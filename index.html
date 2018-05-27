@@ -6,17 +6,36 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <script>
+
     $(document).ready(function() {
+
         $.ajax({
             url: "http://localhost:8080/books"
         }).then(function(data) {
             console.log(data)
+
+            for(var v in data) {
+                console.log(data[v])
+
+                for(var k in data[v]){
+                    console.log("Dane: " + data[v][k])
+                }
+            }
+
+            $.each(data, function(key, value) {
+                console.log(data[key].title);
+                $('.ksiazki').append('<p>' + data[key].title + '</p>' )
+            })
         });
     });
 </script>
 <body>
 
 <h2>Lista ksiazek</h2>
+
+<div class="ksiazki">
+
+</div>
 
 </body>
 </html>
